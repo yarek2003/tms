@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="create-ads-table" author="yarek2003">
+        <preConditions>
+            <not>
+                <tableExists tableName="tasks"/>
+            </not>
+        </preConditions>
+        <createTable tableName="tasks">
+            <column name="pk" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="int">
+                <constraints foreignKeyName="tasks_author_id_author_id" references="users(id)"/>
+            </column>
+            <column name="executor_id" type="int">
+                <constraints foreignKeyName="tasks_executor_id_executor_id" references="users(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
