@@ -26,10 +26,10 @@ public class TaskService {
     private final TaskMapper taskMapper;
 
     public TaskDto addTask(CreateOrUpdateTask createOrUpdateTask, Authentication authentication) throws IOException {
-        User   = userRepository.findByEmail(authentication.getName()).orElseThrow(RuntimeException::new);
+        User author  = userRepository.findByEmail(authentication.getName()).orElseThrow(RuntimeException::new);
         Task task = taskMapper.toTaskEntity(createOrUpdateTask);
-        task.setExecutor(user);
-        task.setAuthor(user);
+        task.setExecutor(createOrUpdateTask.getExecutor());
+        task.setAuthor(author);
         task = taskRepository.save(task);
         return taskMapper.toTaskDto(taskRepository.save(task));
     }

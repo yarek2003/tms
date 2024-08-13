@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
@@ -6,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="create-comments-table" author="yarek2003">
+    <changeSet id="create-comments-table" author="yarek">
         <preConditions>
             <not>
                 <tableExists tableName="comments"/>
@@ -26,24 +25,12 @@
             <column name="task_pk" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="INT">
+            <column name="author_id" type="INT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <addForeignKeyConstraint
-                constraintName="fk_comments_task_id"
-                baseTableName="comments"
-                baseColumnNames="task_pk"
-                referencedTableName="tasks"
-                referencedColumnNames="pk"/>
 
-        <addForeignKeyConstraint
-                constraintName="fk_comments_author_id"
-                baseTableName="comments"
-                baseColumnNames="user_id"
-                referencedTableName="users"
-                referencedColumnNames="id"/>
 
     </changeSet>
 

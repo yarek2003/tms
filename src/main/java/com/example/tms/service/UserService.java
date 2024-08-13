@@ -53,6 +53,10 @@ public class UserService {
         return userMapper.toUserEntity(getByName(name));
     }
 
+    public UserDto getInfoAboutMe(String username) {
+        User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User is not found")); //TODO: возможно тут никогда не будет исключения
+        return userMapper.toUserDto(user);
+    }
     public UpdateUserDto updateInfoAboutMe(String username, UpdateUserDto dto) {
         User user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User is not found")); //TODO: возможно тут никогда не будет исключения
         user.setName(dto.getName());

@@ -6,7 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
 
-    <changeSet id="create-ads-table" author="yarek2003">
+    <changeSet id="create-tasks-table" author="yarek2003">
         <preConditions>
             <not>
                 <tableExists tableName="tasks"/>
